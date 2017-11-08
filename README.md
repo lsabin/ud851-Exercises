@@ -106,7 +106,7 @@ Android Studio by-default targets the latest release. If you’re developing a n
 
 *We can take advantage of the Android URI framework class. It allows us to create a well-formed URI without having to worry about the particular of URI components. For example, adding ampersands between query parameters and encoding invalid character with a percent followed by the character code*
 
-*HTTP library*: [http://square.github.io/okhttp/](OkHttp)
+*HTTP library*: [OkHttp](http://square.github.io/okhttp)
 
 **UTF-8**  
 *Is used by JSON and JavaScript*  
