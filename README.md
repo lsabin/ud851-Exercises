@@ -1,6 +1,6 @@
 # Google Developers Challenge Scholarship
+Notas de https://github.com/wookupmaker/GDCS Thanks!
 
-(notas de https://github.com/wookupmaker/GDCS Thanks!)
 [Google Developer Android Training](https://www.gitbook.com/@google-developer-training)
 
 
