@@ -53,8 +53,8 @@ public class MainActivity extends AppCompatActivity {
 
         Uri.Builder builder = new Uri.Builder();
         builder.scheme("geo")
-                .path("0,0")
-                .query(addressString);
+                .encodedPath("0,0")
+                .appendQueryParameter("q", addressString);
         Uri addressUri = builder.build();
 
         showMap(addressUri);
