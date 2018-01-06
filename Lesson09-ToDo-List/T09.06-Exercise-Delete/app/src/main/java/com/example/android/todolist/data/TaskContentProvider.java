@@ -26,6 +26,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 
+import static android.provider.BaseColumns._ID;
 import static com.example.android.todolist.data.TaskContract.TaskEntry.TABLE_NAME;
 
 // Verify that TaskContentProvider extends from ContentProvider and implements required methods
@@ -155,15 +156,32 @@ public class TaskContentProvider extends ContentProvider {
     // Implement delete to delete a single row of data
     @Override
     public int delete(@NonNull Uri uri, String selection, String[] selectionArgs) {
+        int deletedTasks = 0;
 
-        // TODO (1) Get access to the database and write URI matching code to recognize a single item
+        // (1) Get access to the database and write URI matching code to recognize a single item
+        final SQLiteDatabase db = mTaskDbHelper.getWritableDatabase();
 
-        // TODO (2) Write the code to delete a single row of data
+        // (2) Write the code to delete a single row of data
         // [Hint] Use selections to delete an item by its row ID
+        // Write URI match code and set a variable to return a Cursor
+        int match = sUriMatcher.match(uri);
 
-        // TODO (3) Notify the resolver of a change and return the number of items deleted
+        // Query for the tasks directory and write a default case
+        switch (match) {
+            // Query for the tasks directory
+            case TASK_WITH_ID:
+                String taskId = uri.getPathSegments().get(1);
+                deletedTasks = db.delete(TABLE_NAME, _ID + "=?", new String[]{taskId});
+                break;
+            // Default exception
+            default:
+                throw new UnsupportedOperationException("Unknown uri: " + uri);
+        }
 
-        throw new UnsupportedOperationException("Not yet implemented");
+        // (3) Notify the resolver of a change and return the number of items deleted
+        getContext().getContentResolver().notifyChange(uri, null);
+
+        return deletedTasks;
     }
 
 
